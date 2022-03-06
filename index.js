@@ -1,22 +1,22 @@
-var list = [6, 4, 3, 3, 1, 2, 23, 23, 2, 34, 4, 3, 5, 3]
-current = new Date();
-startTime = current.toLocaleTimeString();
+var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+startTime = new Date();
 
 function sort() {
     while (true) {
         // randomise list
         for (i = 0; i < 10; i++) {
             randomNumber = Math.floor(Math.random() * list.length);
-            // adds elemnt to the end of the list
-            selected = list[randomNumber];
-            list.push(selected);
-            //delets element
-            list.splice(randomNumber, 1)
+            randomNumberTwo = Math.floor(Math.random() * list.length);
+            temp = list[randomNumber];
+            list[randomNumber] = list[randomNumberTwo];
+            list[randomNumberTwo] = temp;
+
         }
         console.log(list);
 
         const isSorted = list => list.every((v, i, a) => !i || a[i - 1] <= v);
         console.log(isSorted(list));
+
         if (isSorted(list)) {
             console.log("Sort Complete!!!");
             break;
@@ -24,10 +24,18 @@ function sort() {
             console.log("Not sorted!");
         }
     }
-    current = new Date();
-    endTime = current.toLocaleTimeString();
-    console.log("start time:" + startTime)
+    // time
+    endTime = new Date();
+    console.log("Start time:" + startTime)
     console.log("End time:" + endTime)
-    console.log(endTime - startTime)
+    var timeDiff = endTime - startTime; //in ms
+    // strip the ms
+    timeDiff /= 1000;
+    // get seconds 
+    var seconds = Math.round(timeDiff);
+    console.log(seconds + " seconds");
+    console.log(seconds / 60 + " mins")
+
+
 }
 sort()
